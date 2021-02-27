@@ -8,7 +8,10 @@ Uma lista com alguns comandos do docker para o dia a dia :)
 
 - `docker ps -a`  Lista containers 
 - `docker ps`  Lista todos os containers em execução
+- `docker inspect <NOME ou ID>` inpeciona um container
 - `docker stop <NOME ou ID>`  para um container
+- `docker restart <NOME ou ID>`  reinicia um container
+- `docker start <NOME ou ID>`  inicia um container
 - `docker rm <NOME ou ID>`  remove um container
 - `docker stats <NOME ou ID>`  verifica quanto recurso o container está consumido
 - `docker top <NOME ou ID>`  verifica os processos que estão sendo executados no container
@@ -17,6 +20,7 @@ Uma lista com alguns comandos do docker para o dia a dia :)
 - `docker run -p <PORTA_HOST>:<PORTA_CONTAINER> <IMAGEM>`  executa o container em segundo plano: Exemplo: docker run  -d -p 8080:80 nginx
 - `docker run --name <NOME_DA_IMAGEM> <IMAGEM>`  nome para seu container
 - `docker container prune`  remove todos os containers que estão parados
+- `docker run --name <NOME_DA_IMAGEM> --link <CONTAINER> -d -p PORTA_HOST>:<PORTA_CONTAINER> <IMAGEM>`  linkando container. Exemplo: docker run --name blog_wordpress --link dbserver:mysql -d -p 8090:80 wordpress
 
 
 ## Manupulando imagens
@@ -28,3 +32,8 @@ Uma lista com alguns comandos do docker para o dia a dia :)
 ## Executar comandos dentro do container
 - `docker exec <NOME ou ID> ls` lista pastas
 - `docker exec -it <NOME ou ID> /bin/bash` acessa terminal do container
+
+## Volumes
+- `docker run -d -it -v /<PASTA>  <NOME ou ID IMAGEM>` cria um volume. Exemplo: docker run -d -it -v /data --name web04 nginx
+- `docker run -d -p <PORTA_HOST>:<PORTA_CONTAINER> --name <NOME> -v /C/dev/:/usr/share/ngnix/html <IMAGEM>` compartilha volume. Exemplo: docker run -d -p 8087:80 --name web07 -v /c/dev/:/usr/share/nginx/html nginx
+- `docker run -d -p <PORTA_HOST>:<PORTA_CONTAINER> --volumes-from <NOME ou ID> --name <NOME PARA O CONTAINER> <IMAGEM>` compartilha volume com container. Exemplo: docker run -d -p 8088:80 --volumes-from web07 --name web08 nginx
