@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    volumes:
+      - 'db_data:/var/lib/mysql'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  db_data: null
+ 
