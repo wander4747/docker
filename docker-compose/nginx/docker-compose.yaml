@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web:
+    container_name: web-dev
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: mydata
+        target: /usr/share/nginx/html 
+  web2:
+    container_name: web-dev2
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: mydata
+        target: /app
+volumes:
+  mydata:
