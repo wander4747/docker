@@ -34,6 +34,11 @@ Uma lista com alguns comandos do docker para o dia a dia :)
 - `docker exec -it <NOME ou ID> /bin/bash` acessa terminal do container
 
 ## Volumes
+- `docker volume ls` lista todos os volumes
+- `docker volume rm <NOME VOLUME>` remove um ou mais volumes
+- `docker volume inspect <NOME VOLUME>` exibe informações volume
+- `docker volume create <NOME VOLUME>` cria um volume
+- `docker volume prune ` remove todos os volumes não usados
 - `docker run -d -it -v /<PASTA>  <NOME ou ID IMAGEM>` cria um volume. Exemplo: docker run -d -it -v /data --name web04 nginx
 - `docker run -d -p <PORTA_HOST>:<PORTA_CONTAINER> --name <NOME> -v /C/dev/:/usr/share/ngnix/html <IMAGEM>` compartilha volume. Exemplo: docker run -d -p 8087:80 --name web07 -v /c/dev/:/usr/share/nginx/html nginx
 - `docker run -d -p <PORTA_HOST>:<PORTA_CONTAINER> --volumes-from <NOME ou ID> --name <NOME PARA O CONTAINER> <IMAGEM>` compartilha volume com container. Exemplo: docker run -d -p 8088:80 --volumes-from web07 --name web08 nginx
