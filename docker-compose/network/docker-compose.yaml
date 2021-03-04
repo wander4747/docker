@@ -1,0 +1,16 @@
+version: "3"
+services:
+  web:
+    container_name: web-dev
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: mydata
+        target: /usr/share/nginx/html 
+    networks: 
+      - alpine-net-2
+
+networks: 
+  alpine-net-2:
+volumes:
+  mydata:

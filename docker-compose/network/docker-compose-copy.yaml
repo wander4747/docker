@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web:
+    container_name: web-dev
+    image: nginx:alpine
+    volumes:
+      - type: volume
+        source: mydata
+        target: /usr/share/nginx/html 
+    networks: 
+      - alpine-net
+
+networks: 
+  alpine-net: #rede existente. So foi atribuida
+    external: true
+volumes:
+  mydata:
