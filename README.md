@@ -42,3 +42,12 @@ Uma lista com alguns comandos do docker para o dia a dia :)
 - `docker run -d -it -v /<PASTA>  <NOME ou ID IMAGEM>` cria um volume. Exemplo: docker run -d -it -v /data --name web04 nginx
 - `docker run -d -p <PORTA_HOST>:<PORTA_CONTAINER> --name <NOME> -v /C/dev/:/usr/share/ngnix/html <IMAGEM>` compartilha volume. Exemplo: docker run -d -p 8087:80 --name web07 -v /c/dev/:/usr/share/nginx/html nginx
 - `docker run -d -p <PORTA_HOST>:<PORTA_CONTAINER> --volumes-from <NOME ou ID> --name <NOME PARA O CONTAINER> <IMAGEM>` compartilha volume com container. Exemplo: docker run -d -p 8088:80 --volumes-from web07 --name web08 nginx
+
+## Redes
+- `docker network ls` lista todos as redes
+- `docker network create --driver <DRIVER> <NOME>` cria uma rede. Exemplo: docker network create --driver bridge alpine-net
+- `docker run -d --name <NOME_DA_IMAGEM> --network <NOME DA REDE> <IMAGEM>`  atribuindo um container a uma rede. Exemplo: docker run -d --name ngnix03 --network alpine-net nginx:alpine
+- `docker network inspect <NOME/ID REDE> ` exibe informações de uma rede
+- `docker network prune` remove todas as redes não usadas
+- `docker network rm <NOME/ID REDE>` remove uma ou mais redes
+
